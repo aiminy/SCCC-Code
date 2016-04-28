@@ -1,0 +1,33 @@
+#!/bin/bash
+#BSUB -n 32
+#BSUB -q general
+#BSUB -W 05:00
+#BSUB -J ANNOVAR
+#BSUB -P myprojectid
+#BSUB -o %J.out
+#BSUB -e %J.err
+
+#wme /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output.txt)/mutect_output_str.avinputc -l /scratch/projects/bbc/Project/zLi/Mutation/S2vsS6/results/mutect_output_passed.vcf.recode.vcf
+#wc -l "/scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output.txt" 
+#mutect_output_passed.vcf.recode.vcf
+
+#cut -f1-2,4- "/scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output.txt" > /scratch/projects/bbc/Project/zLi/Mutation/S7vsS9/results/mutect_output_2.txt
+
+#cut -f1-2,4- "/scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output.txt" > /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3.txt
+
+#perl /scratch/projects/bbc/NGS-tools/Convert_mut_2_vcf.pl /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3.txt /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3.vcf
+
+
+#grep -v REJECT  /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3.vcf > /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_passed.vcf  
+
+#/scratch/projects/bbc/NGS-tools/annovar/convert2annovar.pl -format vcf4old /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_passed.vcf > /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_mutect_passed.avinput
+
+/nethome/axy148/annovar/convert2annovar.pl -format vcf4old /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_passed.vcf > /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_mutect_passed.avinput
+
+#/scratch/projects/bbc/NGS-tools/annovar/annotate_variation.pl -out /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/myanno_mutect_passed -build mm10 /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_mutect_passed.avinput /scratch/projects/bbc/NGS-tools/annovar/mm10db/
+
+/nethome/axy148/annovar/annotate_variation.pl -out /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/myanno_mutect_passed -build mm10 /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/mutect_output_cut_c3_mutect_passed.avinput /scratch/projects/bbc/NGS-tools/annovar/mm10db/
+
+
+#-out /scratch/projects/bbc/Project/zLi/Mutation/S2vsS4/results/myanno -remove -protocol refGene -operation g -nastring . -vcfinput
+

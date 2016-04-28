@@ -1,0 +1,1 @@
+fastqc -o QC_output/ /projects/scratch/bbc/Project/Koji/DATA/26597575/*.fastq.gz
